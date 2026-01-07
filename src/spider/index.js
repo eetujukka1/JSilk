@@ -2,9 +2,7 @@
  * Spider - Core web scraping spider class
  */
 class Spider {
-  constructor() {
-    
-  }
+  constructor() {}
 }
 
 export default Spider;

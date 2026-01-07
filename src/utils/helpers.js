@@ -11,8 +11,9 @@
  * @param {string} baseUrl - Base URL for relative URLs
  * @returns {string} Normalized URL
  */
-function normalizeUrl(url, baseUrl = '') {
+function normalizeUrl(url) {
   // TODO: Implement URL normalization
+  console.log(url)
 }
 
 /**
@@ -22,6 +23,7 @@ function normalizeUrl(url, baseUrl = '') {
  */
 function isValidUrl(url) {
   // TODO: Implement URL validation
+  console.log(url)
 }
 
 export default {

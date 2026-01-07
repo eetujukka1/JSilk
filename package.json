@@ -20,7 +20,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "checkformat": "npx prettier --check ."
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

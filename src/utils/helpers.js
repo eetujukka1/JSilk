@@ -13,7 +13,7 @@
  */
 function normalizeUrl(url) {
   // TODO: Implement URL normalization
-  console.log(url)
+  console.log(url);
 }
 
 /**
@@ -23,11 +23,10 @@ function normalizeUrl(url) {
  */
 function isValidUrl(url) {
   // TODO: Implement URL validation
-  console.log(url)
+  console.log(url);
 }
 
 export default {
   normalizeUrl,
   isValidUrl,
 };
-

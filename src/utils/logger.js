@@ -7,10 +7,7 @@
 // const path = require('path');
 
 class Logger {
-  constructor() {
-    
-  }
+  constructor() {}
 }
 
 export default Logger;
-

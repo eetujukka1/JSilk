@@ -1,32 +1,21 @@
-/**
- * Helper utility functions
- */
-
-// Example imports:
-// const { URL } = require('url');
+import { URL } from "url";
 
 /**
  * Normalize a URL to ensure it's absolute
  * @param {string} url - URL to normalize
- * @param {string} baseUrl - Base URL for relative URLs
  * @returns {string} Normalized URL
  */
 function normalizeUrl(url) {
-  // TODO: Implement URL normalization
-  console.log(url);
+  try {
+    return new URL(url).toString();
+  } catch (error) {
+    throw new Error(`Invalid URL: ${url} - ${error.message}`);
+  }
 }
 
-/**
- * Check if a URL is valid
- * @param {string} url - URL to validate
- * @returns {boolean}
- */
-function isValidUrl(url) {
-  // TODO: Implement URL validation
-  console.log(url);
+function logPage(page) {
+  console.log(`Page: ${page.url} Content:`);
+  console.log(page.content);
 }
 
-export default {
-  normalizeUrl,
-  isValidUrl,
-};
+export { normalizeUrl, logPage };

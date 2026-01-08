@@ -14,8 +14,7 @@ function normalizeUrl(url) {
 }
 
 function logPage(page) {
-  console.log(`Page: ${page.url} Content:`);
-  console.log(page.content);
+  console.log(`Scraped ${page.url} at ${page.lastLoaded} - status code ${page.status}`);
 }
 
 export { normalizeUrl, logPage };

@@ -14,8 +14,15 @@ class PageLoader {
     this.onSuccess = onSuccess;
   }
 
-  async loadPage(url) {
-    url = normalizeUrl(url);
+  async loadPage(page) {
+    let url;
+    if (typeof page === "string") {
+      url = normalizeUrl(page);
+      page = new Page(url);
+    } else {
+      url = page.url;
+    }
+
     const config = {};
 
     if (this.proxies && this.proxies.length > 0) {
@@ -34,7 +41,9 @@ class PageLoader {
 
     try {
       const response = await axios.get(url, config);
-      const page = new Page(url, response.data);
+      page.content = response.data;
+      page.lastLoaded = new Date();
+      page.status = response.status;
       this.onSuccess(page);
       return page;
     } catch (error) {

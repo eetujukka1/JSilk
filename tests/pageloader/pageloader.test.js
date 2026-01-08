@@ -1,6 +1,6 @@
 import { describe, it, expect } from "@jest/globals";
 import JSilk from "../../src/index.js";
-const { PageLoader, Proxy } = JSilk;
+const { PageLoader, Proxy, Page } = JSilk;
 import process from "process";
 import dotenv from "dotenv";
 
@@ -23,10 +23,20 @@ describe("PageLoader", () => {
     expect(page.url).toBe("https://ip.oxylabs.io/location");
     expect(page.content.ip).not.toBe(ip);
   }, 30000);
+
   it("should fail on faulty url", async () => {
     const pageLoader = new PageLoader();
     await expect(
       pageLoader.loadPage("https://www.google.com/404"),
     ).rejects.toThrow("Failed to load page");
+  });
+
+  it("should load a page using a Page object", async () => {
+    const pageLoader = new PageLoader();
+    const pageObj = new Page("https://ip.oxylabs.io/location");
+    const page = await pageLoader.loadPage(pageObj);
+    expect(page.url).toBe("https://ip.oxylabs.io/location");
+    expect(page.content).toBeDefined();
+    expect(page.content.ip).toBeDefined();
   });
 });

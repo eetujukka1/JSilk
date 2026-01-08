@@ -1,3 +1,5 @@
+import { normalizeUrl } from "../utils/helpers";
+
 /**
  * Page - a web page
  * @param {string} url - url of the web page
@@ -6,8 +8,10 @@
  */
 class Page {
   constructor(url, content = null) {
-    this.url = url;
+    this.url = normalizeUrl(url);
     this.content = content;
+    this.status = null;
+    this.lastLoaded = null;
   }
 }
 

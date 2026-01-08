@@ -38,7 +38,7 @@ class PageLoader {
       this.onSuccess(page);
       return page;
     } catch (error) {
-      throw new Error(`Failed to load page ${url} - ${error.message}`)
+      throw new Error(`Failed to load page ${url} - ${error.message}`);
     }
   }
 }

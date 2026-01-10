@@ -1,5 +1,5 @@
 import { chromium } from "playwright";
-import PageLoader from "../pageloader"
+import PageLoader from "../pageloader";
 import { getPage } from "../utils/helpers";
 
 /**
@@ -15,7 +15,7 @@ class DynamicPageLoader extends PageLoader {
    * @throws {Error} Throws an error if page loading fails
    */
   async loadPage(page) {
-    page = getPage(page)
+    page = getPage(page);
 
     const browserOptions = {};
 
@@ -42,9 +42,9 @@ class DynamicPageLoader extends PageLoader {
       page.content = await playwrightPage.content();
       page.lastLoaded = new Date();
       page.status = response?.status();
-      
+
       await browser.close();
-      
+
       this.onSuccess(page);
       return page;
     } catch (error) {

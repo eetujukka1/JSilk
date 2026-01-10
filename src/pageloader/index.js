@@ -14,7 +14,7 @@ class PageLoader {
   }
 
   async loadPage(page) {
-    page = getPage(page)
+    page = getPage(page);
 
     const config = {};
 

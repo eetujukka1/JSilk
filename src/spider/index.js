@@ -8,12 +8,14 @@ import { logPage } from "../utils/helpers";
  */
 class Spider {
   constructor(proxies = [], onSuccess = logPage, dynamic = false) {
-    this.pageloader = dynamic ? new DynamicPageLoader(proxies, onSuccess) : new PageLoader(proxies, onSuccess)
+    this.pageloader = dynamic
+      ? new DynamicPageLoader(proxies, onSuccess)
+      : new PageLoader(proxies, onSuccess);
     this.queue = [];
     this.proxies = proxies;
     this.running = false;
   }
-  
+
   /**
    * Add one or more pages to the crawl queue.
    * @param {string[]|string|Page|Page[]} newPages - A URL or array of URLs to enqueue for crawling.

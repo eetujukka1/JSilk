@@ -18,7 +18,7 @@ describe("DynamicPageLoader", () => {
     expect(page.content.length).toBeGreaterThan(0);
     expect(page.status).toBeDefined();
     expect(page.lastLoaded).toBeInstanceOf(Date);
-    
+
     reference = page.content;
   }, 60000);
 
@@ -34,14 +34,16 @@ describe("DynamicPageLoader", () => {
     expect(page.content).toBeDefined();
     expect(typeof page.content).toBe("string");
     expect(page.content.length).toBeGreaterThan(0);
-  
+
     expect(page.content).not.toBe(reference);
   }, 60000);
 
   it("should fail on faulty url", async () => {
     const pageLoader = new DynamicPageLoader();
     await expect(
-      pageLoader.loadPage("https://invalid-domain-that-does-not-exist-12345.com"),
+      pageLoader.loadPage(
+        "https://invalid-domain-that-does-not-exist-12345.com",
+      ),
     ).rejects.toThrow("Failed to load page");
   }, 60000);
 

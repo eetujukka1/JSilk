@@ -1,5 +1,5 @@
 import { chromium } from "playwright";
-import PageLoader from "../pageloader"
+import StaticPageLoader from "../staticpageloader";
 import { getPage } from "../utils/helpers";
 
 /**
@@ -7,7 +7,7 @@ import { getPage } from "../utils/helpers";
  * @param {Array} proxies - Array of proxy objects
  * @returns {Promise<Page>} Promise resolving to the Page object
  */
-class DynamicPageLoader extends PageLoader {
+class DynamicPageLoader extends StaticPageLoader {
   /**
    * Loads a page using Playwright's Chromium browser, waiting for JavaScript to execute
    * @param {Page|string} page - Page object or URL string to load
@@ -15,7 +15,7 @@ class DynamicPageLoader extends PageLoader {
    * @throws {Error} Throws an error if page loading fails
    */
   async loadPage(page) {
-    page = getPage(page)
+    page = getPage(page);
 
     const browserOptions = {};
 
@@ -42,10 +42,12 @@ class DynamicPageLoader extends PageLoader {
       page.content = await playwrightPage.content();
       page.lastLoaded = new Date();
       page.status = response?.status();
-      
+
       await browser.close();
-      
-      this.onSuccess(page);
+
+      if (typeof this.onSuccess != "undefined") {
+        this.onSuccess(page);
+      }
       return page;
     } catch (error) {
       if (browser) {

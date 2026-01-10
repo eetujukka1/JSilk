@@ -1,20 +1,19 @@
 import axios from "axios";
 import { getPage } from "../utils/helpers";
-import { logPage } from "../utils/helpers";
 
 /**
- * PageLoader - Loads pages from the web
+ * StaticPageLoader - Loads pages from the web
  * @param {Array} proxies - Array of proxy objects
  * @returns {Promise<Page>} Promise resolving to the Page object
  */
-class PageLoader {
-  constructor(proxies = [], onSuccess = logPage) {
+class StaticPageLoader {
+  constructor(proxies = [], onSuccess = undefined) {
     this.proxies = proxies;
     this.onSuccess = onSuccess;
   }
 
   async loadPage(page) {
-    page = getPage(page)
+    page = getPage(page);
 
     const config = {};
 
@@ -37,7 +36,10 @@ class PageLoader {
       page.content = response.data;
       page.lastLoaded = new Date();
       page.status = response.status;
-      this.onSuccess(page);
+
+      if (typeof this.onSuccess != "undefined") {
+        this.onSuccess(page);
+      }
       return page;
     } catch (error) {
       throw new Error(`Failed to load page ${page.url} - ${error.message}`);
@@ -45,4 +47,4 @@ class PageLoader {
   }
 }
 
-export default PageLoader;
+export default StaticPageLoader;

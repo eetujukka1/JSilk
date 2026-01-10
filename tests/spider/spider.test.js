@@ -1,7 +1,7 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import JSilk from "../../src/index.js";
 
-const { Spider, Page } = JSilk;
+const { Spider, Page, PageLoader, DynamicPageLoader } = JSilk;
 
 describe("Spider", () => {
   it("processes queued pages with PageLoader", async () => {
@@ -83,5 +83,22 @@ describe("Spider", () => {
     expect(loadPage).toHaveBeenCalledTimes(1);
     expect(spider.queue.length).toBe(1);
     expect(spider.running).toBe(false);
+  });
+
+  it("creates PageLoader instance when dynamic is false", () => {
+    const spider = new Spider([], undefined, false);
+    expect(spider.pageloader).toBeInstanceOf(PageLoader);
+    expect(spider.pageloader).not.toBeInstanceOf(DynamicPageLoader);
+  });
+
+  it("creates PageLoader instance when dynamic is not provided", () => {
+    const spider = new Spider();
+    expect(spider.pageloader).toBeInstanceOf(PageLoader);
+    expect(spider.pageloader).not.toBeInstanceOf(DynamicPageLoader);
+  });
+
+  it("creates DynamicPageLoader instance when dynamic is true", () => {
+    const spider = new Spider([], undefined, true);
+    expect(spider.pageloader).toBeInstanceOf(DynamicPageLoader);
   });
 });

@@ -1,5 +1,5 @@
 import { URL } from "url";
-
+import Page from "../page";
 /**
  * Normalize a URL to ensure it's absolute
  * @param {string} url - URL to normalize
@@ -16,7 +16,17 @@ function normalizeUrl(url) {
 function logPage(page) {
   console.log(
     `Scraped ${page.url} at ${page.lastLoaded} - status code ${page.status}`,
+    page
   );
 }
 
-export { normalizeUrl, logPage };
+function getPage(page) {
+  if (typeof page === "string") {
+    const url = normalizeUrl(page);
+    page = new Page(url);
+  }
+
+  return page;
+}
+
+export { normalizeUrl, logPage, getPage };

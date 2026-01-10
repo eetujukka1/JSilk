@@ -1,7 +1,8 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import JSilk from "../../src/index.js";
 
-const { Spider, Page, StaticPageLoader, DynamicPageLoader, DefaultPageLoader } = JSilk;
+const { Spider, Page, StaticPageLoader, DynamicPageLoader, DefaultPageLoader } =
+  JSilk;
 
 describe("Spider", () => {
   it("processes queued pages", async () => {
@@ -143,7 +144,7 @@ describe("Spider", () => {
   it("creates DefaultPageLoader with custom proxies and onSuccess callback", () => {
     const mockOnSuccess = jest.fn();
     const spider = new Spider([], mockOnSuccess);
-    
+
     expect(spider.pageloader).toBeInstanceOf(DefaultPageLoader);
     expect(spider.pageloader.proxies).toEqual([]);
     expect(spider.pageloader.onSuccess).toBe(mockOnSuccess);

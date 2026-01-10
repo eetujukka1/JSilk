@@ -9,11 +9,12 @@ import { logPage } from "../utils/helpers";
  */
 class Spider {
   constructor(proxies = [], onSuccess = logPage, dynamic = undefined) {
-    this.pageloader = typeof dynamic === "undefined"
-      ? new DefaultPageLoader(proxies, onSuccess)
-      : dynamic
-        ? new DynamicPageLoader(proxies, onSuccess)
-        : new StaticPageLoader(proxies, onSuccess);
+    this.pageloader =
+      typeof dynamic === "undefined"
+        ? new DefaultPageLoader(proxies, onSuccess)
+        : dynamic
+          ? new DynamicPageLoader(proxies, onSuccess)
+          : new StaticPageLoader(proxies, onSuccess);
     this.queue = [];
     this.proxies = proxies;
     this.running = false;

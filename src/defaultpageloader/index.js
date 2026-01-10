@@ -18,8 +18,8 @@ class DefaultPageLoader {
   constructor(proxies = [], onSuccess = logPage) {
     this.proxies = proxies;
     this.onSuccess = onSuccess;
-    this.staticLoader = new StaticPageLoader(proxies)
-    this.dynamicLoader = new DynamicPageLoader(proxies)
+    this.staticLoader = new StaticPageLoader(proxies);
+    this.dynamicLoader = new DynamicPageLoader(proxies);
   }
 
   /**
@@ -31,17 +31,16 @@ class DefaultPageLoader {
    */
   async loadPage(page) {
     try {
-      page = await this.staticLoader.loadPage(page)
-    
-      if (typeof page.content != "object")
-      {
+      page = await this.staticLoader.loadPage(page);
+
+      if (typeof page.content != "object") {
         const { escalate } = scoreHtml(page.content);
-  
+
         if (escalate) {
-          page = await this.dynamicLoader.loadPage(page)
+          page = await this.dynamicLoader.loadPage(page);
         }
       }
-      this.onSuccess(page)
+      this.onSuccess(page);
       return page;
     } catch (error) {
       throw new Error(`Failed to load page ${page.url} - ${error.message}`);

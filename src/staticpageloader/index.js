@@ -3,11 +3,11 @@ import { getPage } from "../utils/helpers";
 import { logPage } from "../utils/helpers";
 
 /**
- * PageLoader - Loads pages from the web
+ * StaticPageLoader - Loads pages from the web
  * @param {Array} proxies - Array of proxy objects
  * @returns {Promise<Page>} Promise resolving to the Page object
  */
-class PageLoader {
+class StaticPageLoader {
   constructor(proxies = [], onSuccess = logPage) {
     this.proxies = proxies;
     this.onSuccess = onSuccess;
@@ -45,4 +45,4 @@ class PageLoader {
   }
 }
 
-export default PageLoader;
+export default StaticPageLoader;

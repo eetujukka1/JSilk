@@ -1,5 +1,5 @@
 import { chromium } from "playwright";
-import PageLoader from "../pageloader";
+import StaticPageLoader from "../staticpageloader";
 import { getPage } from "../utils/helpers";
 
 /**
@@ -7,7 +7,7 @@ import { getPage } from "../utils/helpers";
  * @param {Array} proxies - Array of proxy objects
  * @returns {Promise<Page>} Promise resolving to the Page object
  */
-class DynamicPageLoader extends PageLoader {
+class DynamicPageLoader extends StaticPageLoader {
   /**
    * Loads a page using Playwright's Chromium browser, waiting for JavaScript to execute
    * @param {Page|string} page - Page object or URL string to load

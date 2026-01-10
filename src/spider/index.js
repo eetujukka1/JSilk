@@ -1,4 +1,4 @@
-import PageLoader from "../pageloader";
+import StaticPageLoader from "../staticpageloader";
 import DynamicPageLoader from "../dynamicpageloader";
 import { logPage } from "../utils/helpers";
 
@@ -10,7 +10,7 @@ class Spider {
   constructor(proxies = [], onSuccess = logPage, dynamic = false) {
     this.pageloader = dynamic
       ? new DynamicPageLoader(proxies, onSuccess)
-      : new PageLoader(proxies, onSuccess);
+      : new StaticPageLoader(proxies, onSuccess);
     this.queue = [];
     this.proxies = proxies;
     this.running = false;
@@ -26,7 +26,7 @@ class Spider {
 
   /**
    * Start processing the crawl queue.
-   * Runs until stopped or the queue is empty, loading each queued page with the internal `PageLoader`.
+   * Runs until stopped or the queue is empty, loading each queued page with the internal `StaticPageLoader`.
    * Subsequent calls are ignored while a crawl is already running.
    * @returns {Promise<void>}
    */

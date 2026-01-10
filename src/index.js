@@ -5,14 +5,14 @@
 
 import DynamicPageLoader from "./dynamicpageloader";
 import Spider from "./spider";
-import PageLoader from "./pageloader";
+import StaticPageLoader from "./staticpageloader";
 import Proxy from "./proxy";
 import Page from "./page";
 
 export default {
   DynamicPageLoader,
   Spider,
-  PageLoader,
+  StaticPageLoader,
   Proxy,
   Page,
 };

@@ -45,7 +45,9 @@ class DynamicPageLoader extends StaticPageLoader {
 
       await browser.close();
 
-      this.onSuccess(page);
+      if (typeof this.onSuccess != "undefined") {
+        this.onSuccess(page);
+      }
       return page;
     } catch (error) {
       if (browser) {

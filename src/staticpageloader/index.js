@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getPage } from "../utils/helpers";
-import { logPage } from "../utils/helpers";
 
 /**
  * StaticPageLoader - Loads pages from the web
@@ -8,7 +7,7 @@ import { logPage } from "../utils/helpers";
  * @returns {Promise<Page>} Promise resolving to the Page object
  */
 class StaticPageLoader {
-  constructor(proxies = [], onSuccess = logPage) {
+  constructor(proxies = [], onSuccess = undefined) {
     this.proxies = proxies;
     this.onSuccess = onSuccess;
   }
@@ -37,7 +36,10 @@ class StaticPageLoader {
       page.content = response.data;
       page.lastLoaded = new Date();
       page.status = response.status;
-      this.onSuccess(page);
+
+      if (typeof this.onSuccess != "undefined") {
+        this.onSuccess(page);
+      }
       return page;
     } catch (error) {
       throw new Error(`Failed to load page ${page.url} - ${error.message}`);

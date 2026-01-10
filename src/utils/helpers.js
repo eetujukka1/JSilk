@@ -29,7 +29,7 @@ function getPage(page) {
   return page;
 }
 
-function scoreHtmlForRendering(html) {
+function scoreHtml(html) {
   const result = {
     score: 0,
     signals: {}
@@ -138,4 +138,4 @@ function scoreHtmlForRendering(html) {
   };
 }
 
-export { normalizeUrl, logPage, getPage, scoreHtmlForRendering };
+export { normalizeUrl, logPage, getPage, scoreHtml };

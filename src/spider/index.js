@@ -1,4 +1,5 @@
 import StaticPageLoader from "../staticpageloader";
+import DefaultPageLoader from "../defaultpageloader";
 import DynamicPageLoader from "../dynamicpageloader";
 import { logPage } from "../utils/helpers";
 
@@ -7,10 +8,12 @@ import { logPage } from "../utils/helpers";
  * @returns {Spider} Spider object for loading pages
  */
 class Spider {
-  constructor(proxies = [], onSuccess = logPage, dynamic = false) {
-    this.pageloader = dynamic
-      ? new DynamicPageLoader(proxies, onSuccess)
-      : new StaticPageLoader(proxies, onSuccess);
+  constructor(proxies = [], onSuccess = logPage, dynamic = undefined) {
+    this.pageloader = typeof dynamic === "undefined"
+      ? new DefaultPageLoader(proxies, onSuccess)
+      : dynamic
+        ? new DynamicPageLoader(proxies, onSuccess)
+        : new StaticPageLoader(proxies, onSuccess);
     this.queue = [];
     this.proxies = proxies;
     this.running = false;

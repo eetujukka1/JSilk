@@ -29,11 +29,11 @@ await spider.start();
 
 JSilk provides three page loading strategies controlled by the `dynamic` parameter on `Spider`:
 
-| Strategy | `dynamic` value | Engine | Best for |
-| --- | --- | --- | --- |
-| **Default** | `undefined` (default) | Static first, then dynamic if needed | Unknown pages |
-| **Static** | `false` | Axios HTTP requests | Server-rendered HTML |
-| **Dynamic** | `true` | Playwright Chromium | SPAs (React, Vue, Angular, etc.) |
+| Strategy    | `dynamic` value       | Engine                               | Best for                         |
+| ----------- | --------------------- | ------------------------------------ | -------------------------------- |
+| **Default** | `undefined` (default) | Static first, then dynamic if needed | Unknown pages                    |
+| **Static**  | `false`               | Axios HTTP requests                  | Server-rendered HTML             |
+| **Dynamic** | `true`                | Playwright Chromium                  | SPAs (React, Vue, Angular, etc.) |
 
 The **default** strategy loads the page over HTTP first, then analyzes the HTML using a heuristic scoring system. If the content appears to be a JavaScript-heavy SPA (score >= 7), it automatically re-fetches the page with a headless browser.
 
@@ -58,9 +58,9 @@ By default, loaded pages are logged to the console. Pass a custom callback to ha
 
 ```javascript
 const onSuccess = (page) => {
-  console.log(page.url);      // The page URL
-  console.log(page.content);  // HTML content
-  console.log(page.status);   // HTTP status code
+  console.log(page.url); // The page URL
+  console.log(page.content); // HTML content
+  console.log(page.status); // HTTP status code
   console.log(page.lastLoaded); // Date timestamp
 };
 

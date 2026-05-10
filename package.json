@@ -14,6 +14,7 @@
   "author": "",
   "type": "module",
   "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "web-scraping"
   ],

@@ -1,6 +1,7 @@
-import StaticPageLoader from "../staticpageloader";
-import DynamicPageLoader from "../dynamicpageloader";
-import { logPage, scoreHtml } from "../utils/helpers";
+import DynamicPageLoader from "../dynamicpageloader/index.js";
+import StaticPageLoader from "../staticpageloader/index.js";
+import { getPage, logPage, scoreHtml } from "../utils/helpers.js";
+import { loadPage as loadDefaultPage } from "./loadPage.js";
 
 /**
  * DefaultPageLoader - A smart page loader that attempts static loading first,
@@ -30,16 +31,19 @@ class DefaultPageLoader {
    * @throws {Error} Throws an error if page loading fails
    */
   async loadPage(page) {
+    page = getPage(page);
+
     try {
       page = await this.staticLoader.loadPage(page);
 
-      if (typeof page.content != "object") {
+      if (typeof page.content !== "object") {
         const { escalate } = scoreHtml(page.content);
 
         if (escalate) {
           page = await this.dynamicLoader.loadPage(page);
         }
       }
+
       this.onSuccess(page);
       return page;
     } catch (error) {
@@ -48,4 +52,5 @@ class DefaultPageLoader {
   }
 }
 
+export { loadDefaultPage as loadPage };
 export default DefaultPageLoader;

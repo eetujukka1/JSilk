@@ -1,4 +1,4 @@
-import { normalizeUrl } from "../utils/helpers";
+import { normalizeUrl } from "../utils/helpers.js";
 
 /**
  * Page - a web page

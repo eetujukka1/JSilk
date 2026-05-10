@@ -1,5 +1,5 @@
 import { URL } from "url";
-import Page from "../page";
+import Page from "../page/index.js";
 /**
  * Normalize a URL to ensure it's absolute
  * @param {string} url - URL to normalize
@@ -27,6 +27,14 @@ function getPage(page) {
   }
 
   return page;
+}
+
+function getRandomProxy(proxies = []) {
+  if (!Array.isArray(proxies) || proxies.length === 0) {
+    return undefined;
+  }
+
+  return proxies[Math.floor(Math.random() * proxies.length)];
 }
 
 function scoreHtml(html) {
@@ -112,4 +120,4 @@ function scoreHtml(html) {
   };
 }
 
-export { normalizeUrl, logPage, getPage, scoreHtml };
+export { normalizeUrl, logPage, getPage, getRandomProxy, scoreHtml };

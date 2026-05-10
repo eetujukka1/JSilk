@@ -1,7 +1,7 @@
-import StaticPageLoader from "../staticpageloader";
-import DefaultPageLoader from "../defaultpageloader";
-import DynamicPageLoader from "../dynamicpageloader";
-import { logPage } from "../utils/helpers";
+import DefaultPageLoader from "../defaultpageloader/index.js";
+import DynamicPageLoader from "../dynamicpageloader/index.js";
+import StaticPageLoader from "../staticpageloader/index.js";
+import { logPage } from "../utils/helpers.js";
 
 /**
  * Spider - Core web scraping spider class
